@@ -1,3 +1,6 @@
 “How to create one server bundle and one client bundle”
 replace 'node: true' with 'externalsPresets: { node: true }' in webpack.server.config.js
 
+"Enable Hot Reloading"
+see README.md
+

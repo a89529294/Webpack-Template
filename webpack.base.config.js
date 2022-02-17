@@ -1,13 +1,15 @@
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 //loader order matters e.g. style-loader then css-loader
 const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
+    // filename: "bundle.js",
   },
   module: {
     rules: [
@@ -18,7 +20,8 @@ const config = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        // use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: ["style-loader", "css-loader"], //MiniCss conflicts with style-loader
       },
     ],
   },
@@ -29,12 +32,15 @@ const config = {
         htmlWebpackPlugin.options.title +
         '</title></head><body><div id="root"></div></body></html>',
       filename: "index.html",
-      hash: true,
       meta: {
         viewport: "width=device-width, initial-scale=1, shrink-to-fit=no",
       },
       title: "Webpack Tutorial",
     }),
+    // new MiniCssExtractPlugin({
+    //   filename: "[name].[contenthash].css",
+    //   chunkFilename: "[id].[contenthash].css",
+    // }),
   ],
   //This is why you can leave off extensions when importing .js and .jsx files,
   //by default webpack only look for .js when you leave off extensions.
@@ -42,6 +48,11 @@ const config = {
     extensions: [".js", ".jsx"],
     alias: {
       "react-dom": "@hot-loader/react-dom",
+    },
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
     },
   },
 };

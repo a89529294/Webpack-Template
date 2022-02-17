@@ -14,4 +14,4 @@ const App = ({ name }) => (
 
 const HotApp = hot(App);
 
-ReactDOM.render(<HotApp name="d" />, document.getElementById("root"));
+ReactDOM.render(<HotApp name="a" />, document.getElementById("root"));
