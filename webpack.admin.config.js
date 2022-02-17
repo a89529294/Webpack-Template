@@ -1,10 +1,12 @@
 const { merge } = require("webpack-merge");
-const path = require("path");
 const base = require("./webpack.base.config");
 
 const config = {
-  mode: "development",
-  devServer: { static: path.join(__dirname, "dist") },
+  entry: "./src/index-admin.js",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+  },
 };
 
 module.exports = merge(base, config);
