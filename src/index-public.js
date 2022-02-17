@@ -11,4 +11,4 @@ const App = ({ name }) => (
   </div>
 );
 
-ReactDOM.render(<App name="jane" />, document.getElementById("app"));
+ReactDOM.render(<App name="public" />, document.getElementById("app"));

@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-dev": "webpack --config webpack.dev.config.js",
-    "build-prod": "webpack --config webpack.prod.config.js"
+    "build-public": "webpack --config webpack.public.config.js --mode production",
+    "build-admin": "webpack --config webpack.admin.config.js --mode production",
+    "build": "npm run build-public, npm run build-admin"
   },
   "keywords": [],
   "author": "Albert Chang",
