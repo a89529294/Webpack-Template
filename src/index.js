@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { hot } from "react-hot-loader/root";
 
 import Component from "./Component";
 import "./style.css";
@@ -11,4 +12,6 @@ const App = ({ name }) => (
   </div>
 );
 
-ReactDOM.render(<App name="jane" />, document.getElementById("app"));
+const HotApp = hot(App);
+
+ReactDOM.render(<HotApp name="b" />, document.getElementById("root"));

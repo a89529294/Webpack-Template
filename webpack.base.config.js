@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 //loader order matters e.g. style-loader then css-loader
 const config = {
-  entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -27,7 +26,7 @@ const config = {
       templateContent: ({ htmlWebpackPlugin }) =>
         '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' +
         htmlWebpackPlugin.options.title +
-        '</title></head><body><div id="app"></div></body></html>',
+        '</title></head><body><div id="root"></div></body></html>',
       filename: "index.html",
       hash: true,
       meta: {
@@ -38,7 +37,12 @@ const config = {
   ],
   //This is why you can leave off extensions when importing .js and .jsx files,
   //by default webpack only look for .js when you leave off extensions.
-  resolve: { extensions: [".js", ".jsx"] },
+  resolve: {
+    extensions: [".js", ".jsx"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom",
+    },
+  },
 };
 
 module.exports = config;
