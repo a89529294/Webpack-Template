@@ -50,6 +50,7 @@ const config = {
       "react-dom": "@hot-loader/react-dom",
     },
   },
+  //This is for vendor splitting
   optimization: {
     splitChunks: {
       chunks: "all",
