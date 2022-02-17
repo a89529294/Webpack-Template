@@ -8,8 +8,8 @@ const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash].js",
-    // filename: "bundle.js",
+    // filename: "[name].[contenthash].js",
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -50,11 +50,12 @@ const config = {
       "react-dom": "@hot-loader/react-dom",
     },
   },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-    },
-  },
+  // enable this only when you use filename: "[name].[contenthash].js"
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //   },
+  // },
 };
 
 module.exports = config;
