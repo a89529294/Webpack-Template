@@ -1,4 +1,9 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [
+    ["@babel/preset-env", { "modules": false }],
+    //modules:false tells babel not to transform import statement to require
+    //this ensures webpack can tree shake unneeded files
+    "@babel/preset-react"
+  ],
   "plugins": ["react-hot-loader/babel"]
 }

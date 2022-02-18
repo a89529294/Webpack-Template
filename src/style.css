@@ -2,3 +2,7 @@ body {
   color: green;
   background-color: purple;
 }
+
+::placeholder {
+  color: aquamarine;
+}

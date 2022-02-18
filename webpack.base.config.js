@@ -3,13 +3,15 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-//loader order matters e.g. style-loader then css-loader
+//loader order matters, it goes from right to left. The output of the loader on the
+//right serves as the input of the loader on the left.
 const config = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash].js",
-    // filename: "bundle.js",
+    //contenthash is for cache busting
+    // filename: "[name].[contenthash].js",
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -20,8 +22,18 @@ const config = {
       },
       {
         test: /\.css$/,
+        // MiniCss is for css splitting, it conflicts with style-loader because style-loader
+        // puts css in bundle.js but MiniCss put css in seperate css files.
+        // style loader changes css into document.createElement('style',....) so that eventually
+        // a style tag is generated in html header.
+        // MiniCss keeps css in seperate css files and eventually adds a link tag in html header.
+        // css-loader simply replaces import and url(...) in css files to location strings
         // use: [MiniCssExtractPlugin.loader, "css-loader"],
-        use: ["style-loader", "css-loader"], //MiniCss conflicts with style-loader
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.(png|svg)$/,
+        type: "asset/resource",
       },
     ],
   },
@@ -51,11 +63,11 @@ const config = {
     },
   },
   //This is for vendor splitting
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //   },
+  // },
 };
 
 module.exports = config;

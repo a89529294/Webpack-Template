@@ -1,14 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { hot } from "react-hot-loader/root";
+import { sortBy } from "lodash-es";
 
-import Component from "./Component";
+import myPNG from "./assets/myPNG.png";
+import mySVG from "./assets/mySVG.svg";
 import "./style.css";
 
 const App = ({ name }) => (
   <div>
     Hello {name}!!?
-    <Component />
+    <img src={myPNG} alt="" style={{ width: "100px" }} />
+    <img src={mySVG} alt="" style={{ width: "100px" }} />
   </div>
 );
 
